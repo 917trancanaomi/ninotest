@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello this is my site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-green: #06c892;
+            --coral: #fd696e;
+            --dark-navy: #090147;
+            --bright-blue: #3583ff;
+            --teal: #004243;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--teal) 100%);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(6, 200, 146, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            background: rgba(253, 105, 110, 0.1);
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+            background: rgba(53, 131, 255, 0.1);
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+            background: rgba(6, 200, 146, 0.1);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Header */
+        header {
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .header-content {
+            text-align: center;
+            animation: slideDown 1s ease-out;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-green), var(--bright-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(6, 200, 146, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .nav-button {
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-button:hover::before {
+            left: 100%;
+        }
+        
+        .nav-button:hover {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 20px rgba(6, 200, 146, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+        
+        .passion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .passion-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .passion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-green), var(--bright-blue), var(--coral));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .passion-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .passion-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+        }
+        
+        .cybersec-icon {
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+        }
+        
+        .angular-icon {
+            background: linear-gradient(135deg, var(--coral), var(--bright-blue));
+        }
+        
+        .reading-icon {
+            background: linear-gradient(135deg, var(--bright-blue), var(--dark-navy));
+        }
+        
+        .art-icon {
+            background: linear-gradient(135deg, var(--coral), var(--primary-green));
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+        
+        .card-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--coral), var(--bright-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .skill-tag {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .skill-tag:hover {
+            background: var(--primary-green);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(6, 200, 146, 0.3);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 3rem 0;
+            margin: 3rem 0;
+            border-radius: 30px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+        
+        .contact-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--primary-green), var(--bright-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(6, 200, 146, 0.3);
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(6, 200, 146, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .passion-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .passion-card:nth-child(1) { animation-delay: 0.1s; }
+        .passion-card:nth-child(2) { animation-delay: 0.2s; }
+        .passion-card:nth-child(3) { animation-delay: 0.3s; }
+        .passion-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .passion-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-container {
+                justify-content: center;
+            }
+        }
+        
+        /* Glowing cursor effect */
+        body {
+            cursor: none;
+        }
+        
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(6, 200, 146, 0.5);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 20px rgba(6, 200, 146, 0.8);
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(6, 200, 146, 0.3);
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <div class="bg-animation">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Hello this is my site (HI I TOOK OVER THIS SITE :D )</h1>
+                <p class="subtitle">Passionate about cybersecurity, code, knowledge & creativity</p>
+            </div>
+            
+            <nav>
+                <a href="#about" class="nav-button">About</a>
+                <a href="#passions" class="nav-button">Passions</a>
+                <a href="#skills" class="nav-button">Skills</a>
+                <a href="#contact" class="nav-button">Contact</a>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="passions" class="passions-section">
+                <div class="passion-grid">
+                    <div class="passion-card">
+                        <div class="card-icon cybersec-icon">🛡️</div>
+                        <h3 class="card-title">Cybersecurity</h3>
+                        <p class="card-description">
+                            Protecting digital assets and understanding threat landscapes. From penetration testing to security architecture, I'm passionate about building secure systems and staying ahead of evolving cyber threats.
+                        </p>
+                    </div>
+                    
+                    <div class="passion-card">
+                        <div class="card-icon angular-icon">⚡</div>
+                        <h3 class="card-title">Angular Development</h3>
+                        <p class="card-description">
+                            Creating dynamic, responsive web applications with Angular. I love crafting clean, maintainable code and building user experiences that are both powerful and intuitive.
+                        </p>
+                    </div>
+                    
+                    <div class="passion-card">
+                        <div class="card-icon reading-icon">📚</div>
+                        <h3 class="card-title">Reading & Learning</h3>
+                        <p class="card-description">
+                            Constantly expanding knowledge through books, research papers, and technical documentation. Learning is a lifelong journey that keeps me curious and innovative.
+                        </p>
+                    </div>
+                    
+                    <div class="passion-card">
+                        <div class="card-icon art-icon">🎨</div>
+                        <h3 class="card-title">Art & Creativity</h3>
+                        <p class="card-description">
+                            Expressing creativity through various art forms. Art provides balance to technical work and inspires innovative solutions to complex problems.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="skills" class="skills-section">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Cybersecurity</span>
+                    <span class="skill-tag">Penetration Testing</span>
+                    <span class="skill-tag">Web Development</span>
+                    <span class="skill-tag">Security Architecture</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Risk Assessment</span>
+                    <span class="skill-tag">Creative Problem Solving</span>
+                </div>
+            </section>
+            
+            <section id="contact" class="contact-section">
+                <h2 class="section-title">Let's Connect</h2>
+                <p style="margin-bottom: 2rem; color: rgba(255, 255, 255, 0.8);">
+                    Ready to collaborate on exciting projects or discuss cybersecurity, coding, or creative ideas?
+                </p>
+                <a href="#" class="contact-button">Get In Touch</a>
+            </section>
+        </main>
+    </div>
+    
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX - 18 + 'px';
+                cursorFollower.style.top = e.clientY - 18 + 'px';
+            }, 100);
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating-element');
+            const speed = 0.5;
+            
+            parallax.forEach((element, index) => {
+                const yPos = -(scrolled * speed * (index + 1) * 0.1);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+        
+        // Interactive skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.background = `linear-gradient(45deg, #06c892, #3583ff)`;
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+        
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
